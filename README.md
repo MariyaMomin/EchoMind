@@ -479,3 +479,4 @@ If you find EchoMind helpful, please ⭐ star this repository to show your suppo
 
 **Made with ❤️ for mental wellness accessibility**
 # EchoMind
+# EchoMind
