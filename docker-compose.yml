@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: echomind-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/data
+      - ./backend/logs:/app/logs
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - CHROMA_PERSIST_DIR=/data/chromadb
+      - ENVIRONMENT=production
+    restart: unless-stopped
+    networks:
+      - echomind-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: echomind-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    restart: unless-stopped
+    networks:
+      - echomind-network
+
+networks:
+  echomind-network:
+    driver: bridge
+
+volumes:
+  chromadb-data:

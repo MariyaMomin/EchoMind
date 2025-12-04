@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: echomind-backend
+    env: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: "pip install -r requirements.txt && python -m spacy download en_core_web_sm"
+    startCommand: "python -m app.main"
+    envVars:
+      - key: API_HOST
+        value: "0.0.0.0"
+      - key: API_PORT
+        value: "8000"
+      - key: ENVIRONMENT
+        value: "production"
+      - key: CHROMA_PERSIST_DIR
+        value: "/opt/render/project/data/chromadb"
+      - key: CORS_ORIGINS
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: "3.10.0"
+    disk:
+      name: echomind-data
+      mountPath: /opt/render/project/data
+      sizeGB: 1
