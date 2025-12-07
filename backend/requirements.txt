@@ -24,3 +24,5 @@ pytz
 loguru
 torch
 torchvision
+langchain
+langchain-community
