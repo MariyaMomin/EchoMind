@@ -1,18 +1,14 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
   "installCommand": "npm install",
+  "outputDirectory": "dist",
   "framework": "vite",
-  "routes": [
-    {
-     "src": "/(.*)",
-      "dest": "app.py",
-      "status": 200
-    }
+  "rewrites": [
+    { "source": "/(.*)", 
+    "destination": "/index.html" }
   ],
   "env": {
     "VITE_API_URL": "https://echomind-d6by.onrender.com"
   }
 }
-

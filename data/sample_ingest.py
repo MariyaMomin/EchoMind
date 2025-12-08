@@ -4,10 +4,15 @@ This script demonstrates how to ingest mental wellness resources into the vector
 """
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'backend'))
+import pathlib
 
-from app.services.rag_service import RAGService
-from app.models.schemas import SourceType
+# Ensure backend package is on sys.path when running this script directly
+BACKEND_DIR = pathlib.Path(__file__).resolve().parents[1] / "backend"
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
+
+from app.services.rag_service import RAGService  # type: ignore
+from app.models.schemas import SourceType  # type: ignore
 
 # Sample mental wellness documents
 SAMPLE_DOCUMENTS = [
