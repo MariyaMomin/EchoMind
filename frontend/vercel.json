@@ -6,12 +6,13 @@
   "framework": "vite",
   "routes": [
     {
-      "src": "/[^.]+",
-      "dest": "/",
+     "src": "/(.*)",
+      "dest": "app.py",
       "status": 200
     }
   ],
   "env": {
-    "VITE_API_URL": "@vite_api_url"
+    "VITE_API_URL": "https://echomind-d6by.onrender.com"
   }
 }
+
